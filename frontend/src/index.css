@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* index.css */
+
+/* Apply a custom font family globally */
+body {
+  @apply font-sans text-base;
+}
+
+/* Apply custom font size to specific element */
+h1 {
+  @apply text-4xl font-bold text-blue-600;
+}
