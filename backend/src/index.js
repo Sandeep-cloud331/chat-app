@@ -28,7 +28,7 @@ if(process.env.NODE_ENV==="production"){
 
   app.get("*",(req,res)=>{
     res.sendFile(pathjoin(__dirname,"../frontend/dist","index.html"));
-  })
+  });
 }
 
 server.listen(3000, () => {

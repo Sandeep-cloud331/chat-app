@@ -3,7 +3,8 @@ import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client"
 
-const base_url = import.meta.env.MODE === "development" ? "http://localhost:3000/api" : "/";
+const base_url = import.meta.env.MODE === "development" ? "http://localhost:3000" : "/";
+
 
 export const useAuthStore = create((set, get) => ({
   onlineUsers: [],
@@ -18,17 +19,18 @@ export const useAuthStore = create((set, get) => ({
   checkAuth: async () => {
     try {
       const res = await axiosInstance.get("/auth/check");
+
       set({ authUser: res.data });
       get().connectSocket();
     } catch (error) {
-      console.log("Error in checkAuth", error);
+      console.log("Error in checkAuth:", error);
       set({ authUser: null });
-    }
-    finally {
-      console.log("error in final");
+    } finally {
       set({ isCheckingAuth: false });
     }
   },
+  
+  
 
   signup: async (data) => {
     set({ isSigningUp: true })
