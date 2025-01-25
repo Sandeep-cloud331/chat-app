@@ -2,6 +2,7 @@ import { Camera, Mail, User } from 'lucide-react';
 import imageCompression from 'browser-image-compression';
 import React, { useState } from 'react'
 import { useAuthStore } from '../store/useAuthStore';
+import defaultAvatar from "../assets/avatar.jpg";
 
 export default function profilePage() {
 
@@ -15,8 +16,8 @@ export default function profilePage() {
     try {
       // Compress the image
       const options = {
-        maxSizeMB: 1, // Adjust the size limit in MB
-        maxWidthOrHeight: 1024, // Resize the image if it's larger than this dimension
+        maxSizeMB: 1, 
+        maxWidthOrHeight: 1024, 
         useWebWorker: true,
       };
       const compressedFile = await imageCompression(file, options);
@@ -50,8 +51,8 @@ export default function profilePage() {
           <div className="flex flex-col items-center gap-4">
             <div className="relative">
               <img
-                src={selectedImg||authUser.profilePic||"/avatar.png"}
-                alt="Profile"
+                src={selectedImg||authUser.profilePic||defaultAvatar}
+                alt="Proile"
                 className="size-32 rounded-full object-cover border-4 "
               />
               <label

@@ -1,14 +1,21 @@
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import { useChatStore } from "../store/useChatStore";
 import { Image, Send, X } from "lucide-react";
 import toast from "react-hot-toast";
 
-export default function messageInput() {
+export default function messageInput(selectedUser) {
+
 
   const[text,setText] = useState("");
   const[img,setImgPreview] = useState(null);
   const fileInputRef = useRef();
   const{sendMessage} = useChatStore();
+
+  useEffect(() => {
+    setText("");
+    setImgPreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }, [selectedUser]);
 
 
   const handleImgChange=(e)=>{

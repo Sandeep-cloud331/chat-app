@@ -23,7 +23,8 @@ export const signup = async(req, res) => {
     const newUser = new User({
       fullName,
       email,
-      password:hashedPassword
+      password:hashedPassword,
+      profilePic :'https://res.cloudinary.com/drmrp5jb1/image/upload/v1737835062/OIP_qspvhe.jpg'
     })
     if(newUser){
       //jwt token
@@ -35,7 +36,6 @@ export const signup = async(req, res) => {
         _id: newUser._id,
         fullName: newUser.fullName,
         email: newUser.email,
-        profilePic : newUser.profilePic,
     });
 
     }else{
